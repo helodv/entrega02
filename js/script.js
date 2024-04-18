@@ -94,7 +94,7 @@ function generarUsuario(nombre, apellido, usuario, password) {
 function generarProducto(id, producto, marca, modelo, categoria, stock, precio) {
     let productoNuevo = new Producto(id, producto, marca, modelo, categoria, stock, precio)
     listaProductos.push(productoNuevo)
-    menuAdmin()
+    menuProductos()
 }
 
 // MENU Principal
@@ -134,24 +134,19 @@ function login() {
 // Menu Productos
 function menuProductos() {
     let opcion = 0
-    while (opcion < 1 || opcion > 7 || isNaN(opcion)) {
-        opcion = Number(prompt('Ingrese 1 para listar productos\nIngrese 2 para listar productos por precio\nIngrese 3 para borrar un producto\nIngrese 4 para cambiar el stock de un producto\nIngrese 5 para cambiar el precio de un producto\nIngrese 6 para dar de alta un producto\nIngrese 7 para volver al menu anterior'))
+    while (opcion < 1 || opcion > 4 || isNaN(opcion)) {
+        opcion = Number(prompt('Bienvenido a CoderStock\n1: Buscar productos\n2: Dar de alta producto\n3. Listar todos los productos\n4. Desloguear'))
     }
     if (opcion === 1) {
-        let nombreBuscado = prompt('Ingresa un nombre de usuario:');
+        let nombreBuscado = prompt('Buscar producto:');
         buscarProducto(nombreBuscado);
     } else if (opcion === 2) {
-        //listar productos por precio
-    } else if (opcion === 3) {
-        // listar productos por stock
-    } else if (opcion === 4) {
-        // agregar stock a un producto
-    } else if (opcion === 5) {
-        // cambiar precio de un producto
-    } else if (opcion === 6) {
         crearProducto()
-    } else if (opcion === 7) {
-
+    } else if (opcion === 3){
+        // listar todos los productos
+    } else if(opcion === 4){
+        alert('Hasta luego')
+        menuPrincipal()
     }
 }
 
@@ -165,13 +160,12 @@ function buscarProducto(nombreBuscado) {
 
     if (resultados.length === 0) {
         alert('No se encontraron usuarios con ese nombre de usuario.');
-        menuUsuarios()
+        menuProductos()
     } else {
-        const mensajeResultados = resultados.map((u) => `Nombre: ${u.nombre}, Apellido: ${u.apellido}, Usuario: ${u.usuario}`).join('\n');
-        alert(`Usuarios encontrados (${resultados.length} resultados):\n${mensajeResultados}`);
-        menuUsuarios()
+        let mensajeResultados = resultados.map((producto) => `ID: ${producto.id}, Producto: ${producto.producto}, Marca: ${producto.marca}, Modelo: ${producto.modelo}, Categoria: ${producto.categoria}, Stock: ${producto.stock}, Precio: ${producto.precio}`).join('\n');
+        alert(`Productos encontrados (${resultados.length} resultados):\n${mensajeResultados}`);
+        menuProductos()
     }
 }
-
 // EJECUCION 
 menuPrincipal()
