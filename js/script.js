@@ -1,5 +1,4 @@
-// simulador de login, creacion de usuarios, administracion de usuarios. 
-// simulador de stock, alta de productos, modificacar precio, agregar stock.
+// stock manager
 
 // clase constructora de usuarios
 class Usuario {
@@ -32,6 +31,7 @@ let listaUsuarios = [
 
 // array PRODUCTOS
 let listaProductos = [
+    // id, producto, marca, modelo, categoria, stock, precio
     new Producto(1, 'Mother MSI B450 AM4 Gaming Max', 'msi', 'b450 Gaming Max', 'motherboard', 2, 76000),
     new Producto(2, 'Motherboard ASUS Prime B450M-A', 'ASUS', 'Prime B450M-A', 'motherboard', 5, 85000),
     new Producto(3, 'Tarjeta gráfica NVIDIA GeForce RTX 3060', 'NVIDIA', 'GeForce RTX 3060', 'tarjeta gráfica', 3, 450000),
@@ -71,6 +71,7 @@ function crearProducto() {
     generarProducto(id, producto, marca, modelo, categoria, stock, precio)
 }
 
+// verifica cual es el id mas alto y devuelve el siguiente para asignarlo a un nuevo producto
 function generarId() {
     let ids = listaProductos.map((p) => p.id);
     let maxId = Math.max(...ids);
@@ -136,45 +137,46 @@ function menuProductos() {
         buscarProducto(nombreBuscado)
     } else if (opcion === 2) {
         crearProducto()
-    } else if (opcion === 3){
+    } else if (opcion === 3) {
         listarProductos(listaProductos)
-    } else if(opcion === 4){
+    } else if (opcion === 4) {
         alert('Hasta luego')
         menuPrincipal()
     }
 }
 
 
-//listar usuarios por busqueda
-
+//lista los productos por busqueda
 function buscarProducto(nombreBuscado) {
     let resultados = listaProductos.filter((producto) =>
         producto.producto.toLowerCase().includes(nombreBuscado.toLowerCase())
     );
 
     if (resultados.length === 0) {
-        alert('No se encontraron usuarios con ese nombre de usuario.');
+        alert('No se encontraron productos.');
         menuProductos()
     } else {
         let mensajeResultados = resultados.map((producto) => `ID: ${producto.id}, Producto: ${producto.producto}, Marca: ${producto.marca}, Modelo: ${producto.modelo}, Categoria: ${producto.categoria}, Stock: ${producto.stock}, Precio: ${producto.precio}`).join('\n');
-        alert(`Productos encontrados (${resultados.length} resultados):\n${mensajeResultados}`);
+        alert(`Productos encontrados (${resultados.length} resultados):\n${mensajeResultados}`)
         menuProductos()
     }
 }
 
+// lista todos los productos
 function listarProductos(productos) {
-    let lista = '';
-    for (const producto of productos) {
-        lista += `ID: ${producto.id}`;
-        lista += ` ,Producto: ${producto.producto}`;
-        lista += ` ,Marca: ${producto.marca}`;
-        lista += ` ,Modelo: ${producto.modelo}`;
-        lista += ` ,Categoría: ${producto.categoria}`;
-        lista += ` ,Stock: ${producto.stock}`;
-        lista += ` ,Precio: $${producto.precio}\n`;
+    let lista = ''
+    for (let producto of productos) {
+        lista += `ID: ${producto.id}`
+        lista += ` ,Producto: ${producto.producto}`
+        lista += ` ,Marca: ${producto.marca}`
+        lista += ` ,Modelo: ${producto.modelo}`
+        lista += ` ,Categoría: ${producto.categoria}`
+        lista += ` ,Stock: ${producto.stock}`
+        lista += ` ,Precio: $${producto.precio}\n`
     }
     alert(`Lista de todos los productos:\n\n${lista}`)
     menuProductos()
 }
+
 // EJECUCION 
 menuPrincipal()
