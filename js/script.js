@@ -66,8 +66,8 @@ function crearProducto() {
     let marca = prompt('Ingrese la marca del producto')
     let modelo = prompt('Ingrese el modelo')
     let categoria = prompt('Ingrese la categoria')
-    let stock = Number(prompt('Ingrese el stock'))
-    let precio = Number(prompt('Ingrese el precio'))
+    let stock = prompt('Ingrese el stock')
+    let precio = prompt('Ingrese el precio')
     let id = generarId();
     generarProducto(id, producto, marca, modelo, categoria, stock, precio)
 }
