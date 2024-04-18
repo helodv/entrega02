@@ -1,4 +1,5 @@
-// stock manager
+// stock manager 
+// Hernan Loureiro / entrega 2 / CoderHouse / JavaScript
 
 // clase constructora de usuarios
 class Usuario {
