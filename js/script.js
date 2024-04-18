@@ -36,13 +36,7 @@ let listaProductos = [
     new Producto(2, 'Motherboard ASUS Prime B450M-A', 'ASUS', 'Prime B450M-A', 'motherboard', 5, 85000),
     new Producto(3, 'Tarjeta gráfica NVIDIA GeForce RTX 3060', 'NVIDIA', 'GeForce RTX 3060', 'tarjeta gráfica', 3, 450000),
     new Producto(4, 'SSD Kingston A2000 1TB NVMe', 'Kingston', 'A2000', 'almacenamiento', 8, 120000),
-    new Producto(5, 'Monitor LG 27GL83A-B', 'LG', '27GL83A-B', 'monitor', 4, 320000),
-    new Producto(6, 'Teclado mecánico Corsair K70 RGB MK.2', 'Corsair', 'K70 RGB MK.2', 'periférico', 6, 180000),
-    new Producto(6, 'Mouse Logitech G502 HERO', 'Logitech', 'G502 HERO', 'periférico', 7, 90000),
-    new Producto(7, 'Auriculares Sony WH-1000XM4', 'Sony', 'WH-1000XM4', 'audio', 2, 350000),
-    new Producto(8, 'Impresora HP LaserJet Pro MFP M28w', 'HP', 'LaserJet Pro MFP M28w', 'impresora', 1, 180000),
-    new Producto(10, 'Smartphone Samsung Galaxy S21 Ultra', 'Samsung', 'Galaxy S21 Ultra', 'smartphone', 3, 1200000),
-    new Producto(11, 'Tablet Apple iPad Air (2020)', 'Apple', 'iPad Air (2020)', 'tablet', 4, 600000)
+    new Producto(5, 'Monitor LG 27GL83A-B', 'LG', '27GL83A-B', 'monitor', 4, 320000)
 ];
 
 
@@ -138,12 +132,12 @@ function menuProductos() {
         opcion = Number(prompt('Bienvenido a CoderStock\n1: Buscar productos\n2: Dar de alta producto\n3. Listar todos los productos\n4. Desloguear'))
     }
     if (opcion === 1) {
-        let nombreBuscado = prompt('Buscar producto:');
-        buscarProducto(nombreBuscado);
+        let nombreBuscado = prompt('Buscar producto:')
+        buscarProducto(nombreBuscado)
     } else if (opcion === 2) {
         crearProducto()
     } else if (opcion === 3){
-        // listar todos los productos
+        listarProductos(listaProductos)
     } else if(opcion === 4){
         alert('Hasta luego')
         menuPrincipal()
@@ -166,6 +160,21 @@ function buscarProducto(nombreBuscado) {
         alert(`Productos encontrados (${resultados.length} resultados):\n${mensajeResultados}`);
         menuProductos()
     }
+}
+
+function listarProductos(productos) {
+    let lista = '';
+    for (const producto of productos) {
+        lista += `ID: ${producto.id}`;
+        lista += ` ,Producto: ${producto.producto}`;
+        lista += ` ,Marca: ${producto.marca}`;
+        lista += ` ,Modelo: ${producto.modelo}`;
+        lista += ` ,Categoría: ${producto.categoria}`;
+        lista += ` ,Stock: ${producto.stock}`;
+        lista += ` ,Precio: $${producto.precio}\n`;
+    }
+    alert(`Lista de todos los productos:\n\n${lista}`)
+    menuProductos()
 }
 // EJECUCION 
 menuPrincipal()
